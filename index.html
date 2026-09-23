@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08070a">
+  <meta name="description" content="The Weeping Butterfly Theater — an artist-centered creative ecosystem for coaching, development, collaboration, and connection.">
+  <title>The Weeping Butterfly Theater</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="The Weeping Butterfly Theater home">
+      <img src="assets/wbt-logo.jpeg" alt="The Weeping Butterfly Theater logo">
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#artists">For Artists</a>
+      <a href="#services">Work With Us</a>
+      <a href="#opportunities">Opportunities</a>
+      <a class="nav-cta" href="#contact">Connect</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-orbit orbit-one"></div>
+      <div class="hero-orbit orbit-two"></div>
+      <div class="hero-content">
+        <p class="eyebrow">THE WEEPING BUTTERFLY THEATER</p>
+        <h1>The butterfly weeps,<br><em>as she forgets the earth<br>and learns the sky.</em></h1>
+        <p class="hero-lede">
+          A creative home for artists who are becoming, creating, collaborating, and finding their way into the next version of themselves.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-gold" href="#artists">For Artists</a>
+          <a class="button button-ghost" href="#about">Enter the Theater</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <img src="assets/wbt-brand-banner.jpeg" alt="">
+      </div>
+    </section>
+
+    <section class="manifesto">
+      <p class="section-kicker">THE PROCESS</p>
+      <h2>We don't believe the artist has to arrive fully formed.</h2>
+      <p>
+        Sometimes the work is about remembering. Sometimes it is about forgetting.
+        Sometimes it is about standing in the space between who you were and who you are becoming.
+      </p>
+      <span class="gold-line"></span>
+    </section>
+
+    <section id="about" class="split-section">
+      <div class="section-image framed">
+        <img src="assets/wbt-logo.jpeg" alt="The Weeping Butterfly Theater logo">
+      </div>
+      <div class="section-copy">
+        <p class="section-kicker">ABOUT THE WBT</p>
+        <h2>Artist over art.<br>Process over perfection.</h2>
+        <p>
+          The Weeping Butterfly Theater supports artists of all mediums through coaching,
+          creative development, networking, and collaboration with other creative and media companies.
+        </p>
+        <p>
+          “Theater” is bigger than a stage here. It is the space where an artist learns,
+          experiments, performs, creates, fails, grows, and becomes.
+        </p>
+        <p class="signature">— Miss Hayze</p>
+      </div>
+    </section>
+
+    <section id="artists" class="dark-panel">
+      <div class="center-heading">
+        <p class="section-kicker">FOR ARTISTS</p>
+        <h2>Come as you are.<br>Build from there.</h2>
+        <p>
+          Whether you are refining your craft, looking for direction, or trying to find
+          your people, The Weeping Butterfly Theater is built around the artist.
+        </p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="card-number">01</span>
+          <h3>Coaching</h3>
+          <p>Support for artists who want to strengthen their craft, confidence, and creative practice.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">02</span>
+          <h3>Development</h3>
+          <p>A place to shape ideas, discover direction, and keep moving when the process gets complicated.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">03</span>
+          <h3>Connection</h3>
+          <p>Networking and collaboration designed to connect artists with people and opportunities.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="center-heading">
+        <p class="section-kicker">WORK WITH US</p>
+        <h2>Bring the vision.<br>Let's find the form.</h2>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <span>01</span>
+          <div><h3>Acting &amp; Artist Coaching</h3><p>Individual creative support and coaching for artists developing their craft.</p></div>
+        </div>
+        <div class="service-item">
+          <span>02</span>
+          <div><h3>Creative Direction</h3><p>Creative guidance for projects, performances, and developing artistic ideas.</p></div>
+        </div>
+        <div class="service-item">
+          <span>03</span>
+          <div><h3>Collaboration</h3><p>Building bridges between artists, production teams, and creative companies.</p></div>
+        </div>
+        <div class="service-item">
+          <span>04</span>
+          <div><h3>Future Programs</h3><p>Workshops, resources, events, and other artist-centered offerings as the ecosystem grows.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="opportunities" class="opportunities">
+      <div>
+        <p class="section-kicker">OPPORTUNITIES</p>
+        <h2>There is always another sky.</h2>
+      </div>
+      <div class="opportunity-box">
+        <p class="small-label">COMING INTO VIEW</p>
+        <h3>Workshops, collaborations &amp; artist opportunities</h3>
+        <p>This space is ready for upcoming events, calls for artists, workshops, and community opportunities.</p>
+        <a href="#contact" class="text-link">Stay connected →</a>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="contact-inner">
+        <div>
+          <p class="section-kicker">GET INVOLVED</p>
+          <h2>What are you<br>becoming?</h2>
+          <p>
+            Artists, collaborators, organizations, and creative companies are invited to connect.
+            Tell us a little about what you're creating and where you want to go.
+          </p>
+        </div>
+        <form class="contact-form" onsubmit="return handleContact(event)">
+          <label>Name<input name="name" required autocomplete="name"></label>
+          <label>Email<input type="email" name="email" required autocomplete="email"></label>
+          <label>I'm reaching out about
+            <select name="reason">
+              <option>Artist coaching</option>
+              <option>Creative collaboration</option>
+              <option>Artist development</option>
+              <option>Partnership / organization</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label>Message<textarea name="message" rows="5" required></textarea></label>
+          <button class="button button-gold" type="submit">Prepare My Inquiry</button>
+          <p id="form-note" class="form-note" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="assets/wbt-logo.jpeg" alt="The Weeping Butterfly Theater">
+      <p>The butterfly weeps, as she forgets the earth and learns the sky.</p>
+    </div>
+    <p class="copyright">© <span id="year"></span> The Weeping Butterfly Theater. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
