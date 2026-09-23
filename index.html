@@ -1,181 +1,443 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08070a">
-  <meta name="description" content="The Weeping Butterfly Theater — an artist-centered creative ecosystem for coaching, development, collaboration, and connection.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>The Weeping Butterfly Theater</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #11120f;
+      color: #f4efe5;
+      line-height: 1.6;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(17, 18, 15, 0.75);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e8d8b7;
+    }
+
+    nav a {
+      color: #f4efe5;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: #b7c5a3;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 8% 80px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(112, 126, 91, 0.2), transparent 35%),
+        linear-gradient(180deg, #171812 0%, #11120f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "🦋";
+      position: absolute;
+      font-size: 18rem;
+      opacity: 0.035;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      font-size: 0.75rem;
+      color: #b7c5a3;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: normal;
+      line-height: 0.95;
+      letter-spacing: -3px;
+      color: #f4efe5;
+      margin-bottom: 35px;
+    }
+
+    .butterfly-line {
+      width: 90px;
+      height: 1px;
+      background: #b7c5a3;
+      margin: 0 auto 35px;
+    }
+
+    .tagline {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-style: italic;
+      color: #d8cfbf;
+      max-width: 700px;
+      margin: 0 auto 45px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      border: 1px solid #b7c5a3;
+      color: #f4efe5;
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      transition: 0.3s ease;
+    }
+
+    .button:hover {
+      background: #b7c5a3;
+      color: #11120f;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 8%;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 0.7rem;
+      color: #9daa89;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: normal;
+      line-height: 1.1;
+      margin-bottom: 30px;
+    }
+
+    .intro {
+      font-size: 1.15rem;
+      color: #d8cfbf;
+      max-width: 720px;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: #e8e0d1;
+      color: #25271f;
+    }
+
+    .about .section-label {
+      color: #667052;
+    }
+
+    .about .intro {
+      color: #4d5146;
+    }
+
+    /* WHAT WE DO */
+
+    .work {
+      background: #151711;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 55px;
+    }
+
+    .card {
+      border-top: 1px solid #687158;
+      padding-top: 25px;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      color: #bbb7ac;
+      font-size: 0.95rem;
+    }
+
+    /* QUOTE */
+
+    .quote {
+      text-align: center;
+      background: #20231b;
+    }
+
+    .quote p {
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      font-style: italic;
+      line-height: 1.2;
+      max-width: 950px;
+      margin: auto;
+      color: #e8e0d1;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      text-align: center;
+      background: #e8e0d1;
+      color: #25271f;
+    }
+
+    .contact .section-label {
+      color: #667052;
+    }
+
+    .contact p {
+      color: #4d5146;
+      margin-bottom: 35px;
+    }
+
+    .contact .button {
+      color: #25271f;
+      border-color: #667052;
+    }
+
+    .contact .button:hover {
+      background: #667052;
+      color: #fff;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 40px 8%;
+      background: #0d0e0b;
+      color: #77796f;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 750px) {
+
+      nav {
+        padding: 18px 6%;
+      }
+
+      .logo {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+      }
+
+      nav a {
+        margin-left: 12px;
+        font-size: 0.7rem;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 80px 7%;
+      }
+
+      .hero {
+        padding-left: 7%;
+        padding-right: 7%;
+      }
+
+      .hero::before {
+        font-size: 12rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="The Weeping Butterfly Theater home">
-      <img src="assets/wbt-logo.jpeg" alt="The Weeping Butterfly Theater logo">
-    </a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
-    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+
+  <nav>
+    <div class="logo">The Weeping Butterfly</div>
+
+    <div>
       <a href="#about">About</a>
-      <a href="#artists">For Artists</a>
-      <a href="#services">Work With Us</a>
-      <a href="#opportunities">Opportunities</a>
-      <a class="nav-cta" href="#contact">Connect</a>
-    </nav>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+
+  <header class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">The Weeping Butterfly Theater</div>
+
+      <h1>Where Artists<br>Become.</h1>
+
+      <div class="butterfly-line"></div>
+
+      <p class="tagline">
+        “The butterfly weeps, as she forgets the earth and learns the sky.”
+      </p>
+
+      <a href="#about" class="button">Enter the world</a>
+
+    </div>
+
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-orbit orbit-one"></div>
-      <div class="hero-orbit orbit-two"></div>
-      <div class="hero-content">
-        <p class="eyebrow">THE WEEPING BUTTERFLY THEATER</p>
-        <h1>The butterfly weeps,<br><em>as she forgets the earth<br>and learns the sky.</em></h1>
-        <p class="hero-lede">
-          A creative home for artists who are becoming, creating, collaborating, and finding their way into the next version of themselves.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-gold" href="#artists">For Artists</a>
-          <a class="button button-ghost" href="#about">Enter the Theater</a>
-        </div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <img src="assets/wbt-brand-banner.jpeg" alt="">
-      </div>
-    </section>
 
-    <section class="manifesto">
-      <p class="section-kicker">THE PROCESS</p>
-      <h2>We don't believe the artist has to arrive fully formed.</h2>
-      <p>
-        Sometimes the work is about remembering. Sometimes it is about forgetting.
-        Sometimes it is about standing in the space between who you were and who you are becoming.
+  <section class="about" id="about">
+
+    <div class="section-inner">
+
+      <div class="section-label">01 — The Butterfly</div>
+
+      <h2>Art is not something<br>you simply make.</h2>
+
+      <p class="intro">
+        The Weeping Butterfly Theater exists to support artists as they
+        discover, develop, and become who they are meant to be.
+        Through coaching, collaboration, networking, and creative
+        opportunities, we create space for artists to grow beyond
+        what they thought was possible.
       </p>
-      <span class="gold-line"></span>
-    </section>
 
-    <section id="about" class="split-section">
-      <div class="section-image framed">
-        <img src="assets/wbt-logo.jpeg" alt="The Weeping Butterfly Theater logo">
-      </div>
-      <div class="section-copy">
-        <p class="section-kicker">ABOUT THE WBT</p>
-        <h2>Artist over art.<br>Process over perfection.</h2>
-        <p>
-          The Weeping Butterfly Theater supports artists of all mediums through coaching,
-          creative development, networking, and collaboration with other creative and media companies.
-        </p>
-        <p>
-          “Theater” is bigger than a stage here. It is the space where an artist learns,
-          experiments, performs, creates, fails, grows, and becomes.
-        </p>
-        <p class="signature">— Miss Hayze</p>
-      </div>
-    </section>
+    </div>
 
-    <section id="artists" class="dark-panel">
-      <div class="center-heading">
-        <p class="section-kicker">FOR ARTISTS</p>
-        <h2>Come as you are.<br>Build from there.</h2>
-        <p>
-          Whether you are refining your craft, looking for direction, or trying to find
-          your people, The Weeping Butterfly Theater is built around the artist.
-        </p>
-      </div>
+  </section>
+
+
+  <section class="work" id="work">
+
+    <div class="section-inner">
+
+      <div class="section-label">02 — The Work</div>
+
+      <h2>Make. Discover.<br>Transform.</h2>
+
       <div class="cards">
-        <article class="card">
-          <span class="card-number">01</span>
-          <h3>Coaching</h3>
-          <p>Support for artists who want to strengthen their craft, confidence, and creative practice.</p>
-        </article>
-        <article class="card">
-          <span class="card-number">02</span>
-          <h3>Development</h3>
-          <p>A place to shape ideas, discover direction, and keep moving when the process gets complicated.</p>
-        </article>
-        <article class="card">
-          <span class="card-number">03</span>
-          <h3>Connection</h3>
-          <p>Networking and collaboration designed to connect artists with people and opportunities.</p>
-        </article>
-      </div>
-    </section>
 
-    <section id="services" class="services">
-      <div class="center-heading">
-        <p class="section-kicker">WORK WITH US</p>
-        <h2>Bring the vision.<br>Let's find the form.</h2>
-      </div>
-      <div class="service-list">
-        <div class="service-item">
-          <span>01</span>
-          <div><h3>Acting &amp; Artist Coaching</h3><p>Individual creative support and coaching for artists developing their craft.</p></div>
-        </div>
-        <div class="service-item">
-          <span>02</span>
-          <div><h3>Creative Direction</h3><p>Creative guidance for projects, performances, and developing artistic ideas.</p></div>
-        </div>
-        <div class="service-item">
-          <span>03</span>
-          <div><h3>Collaboration</h3><p>Building bridges between artists, production teams, and creative companies.</p></div>
-        </div>
-        <div class="service-item">
-          <span>04</span>
-          <div><h3>Future Programs</h3><p>Workshops, resources, events, and other artist-centered offerings as the ecosystem grows.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="opportunities" class="opportunities">
-      <div>
-        <p class="section-kicker">OPPORTUNITIES</p>
-        <h2>There is always another sky.</h2>
-      </div>
-      <div class="opportunity-box">
-        <p class="small-label">COMING INTO VIEW</p>
-        <h3>Workshops, collaborations &amp; artist opportunities</h3>
-        <p>This space is ready for upcoming events, calls for artists, workshops, and community opportunities.</p>
-        <a href="#contact" class="text-link">Stay connected →</a>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="contact-inner">
-        <div>
-          <p class="section-kicker">GET INVOLVED</p>
-          <h2>What are you<br>becoming?</h2>
+        <div class="card">
+          <h3>Artist Development</h3>
           <p>
-            Artists, collaborators, organizations, and creative companies are invited to connect.
-            Tell us a little about what you're creating and where you want to go.
+            Coaching and guidance designed to help artists strengthen
+            their craft, understand their voice, and move with intention.
           </p>
         </div>
-        <form class="contact-form" onsubmit="return handleContact(event)">
-          <label>Name<input name="name" required autocomplete="name"></label>
-          <label>Email<input type="email" name="email" required autocomplete="email"></label>
-          <label>I'm reaching out about
-            <select name="reason">
-              <option>Artist coaching</option>
-              <option>Creative collaboration</option>
-              <option>Artist development</option>
-              <option>Partnership / organization</option>
-              <option>Something else</option>
-            </select>
-          </label>
-          <label>Message<textarea name="message" rows="5" required></textarea></label>
-          <button class="button button-gold" type="submit">Prepare My Inquiry</button>
-          <p id="form-note" class="form-note" aria-live="polite"></p>
-        </form>
+
+        <div class="card">
+          <h3>Creative Collaboration</h3>
+          <p>
+            Connecting artists with people, companies, and creative
+            communities where new work can take flight.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Opportunity</h3>
+          <p>
+            Creating pathways for artists to meet, build, perform,
+            create, and share the work they have been carrying inside.
+          </p>
+        </div>
+
       </div>
-    </section>
-  </main>
+
+    </div>
+
+  </section>
+
+
+  <section class="quote">
+
+    <p>
+      “She does not become a butterfly<br>
+      by pretending she never crawled.”
+    </p>
+
+  </section>
+
+
+  <section class="contact" id="contact">
+
+    <div class="section-inner">
+
+      <div class="section-label">03 — Connect</div>
+
+      <h2>Come as you are.<br>Leave changed.</h2>
+
+      <p>
+        Artists, collaborators, and creative companies are welcome here.
+      </p>
+
+      <a href="mailto:hello@theweepingbutterflytheater.com" class="button">
+        Get in touch
+      </a>
+
+    </div>
+
+  </section>
+
 
   <footer>
-    <div class="footer-brand">
-      <img src="assets/wbt-logo.jpeg" alt="The Weeping Butterfly Theater">
-      <p>The butterfly weeps, as she forgets the earth and learns the sky.</p>
-    </div>
-    <p class="copyright">© <span id="year"></span> The Weeping Butterfly Theater. All rights reserved.</p>
+    THE WEEPING BUTTERFLY THEATER · © 2026
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
