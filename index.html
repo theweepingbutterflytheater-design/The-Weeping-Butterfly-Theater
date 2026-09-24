@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Weeping Butterfly Theater — a creative sanctuary for artists of all mediums.">
+<title>The Weeping Butterfly Theater</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: #050505;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #050505;
+  }
+
+  .artwork {
+    position: relative;
+    width: min(100%, 1215px);
+    line-height: 0;
+  }
+
+  .artwork img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Invisible interaction zones sit directly over the artwork.
+     The artwork itself remains unchanged. */
+  .hotspot {
+    position: absolute;
+    display: block;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background .2s ease, box-shadow .2s ease;
+  }
+
+  .hotspot:focus-visible {
+    outline: 2px solid #e8bd45;
+    outline-offset: 3px;
+    background: rgba(111, 19, 157, .16);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hotspot:hover {
+      background: rgba(111, 19, 157, .10);
+      box-shadow: inset 0 0 0 1px rgba(232,189,69,.32);
+    }
+  }
+
+  /* Header */
+  .home        { left: 25.0%; top: 0.4%; width: 6.0%; height: 4.8%; }
+  .about       { left: 31.0%; top: 0.4%; width: 6.2%; height: 4.8%; }
+  .artists-nav { left: 38.0%; top: 0.4%; width: 9.0%; height: 4.8%; }
+  .services    { left: 47.0%; top: 0.4%; width: 8.0%; height: 4.8%; }
+  .opps        { left: 55.0%; top: 0.4%; width: 11.5%; height: 4.8%; }
+  .contact     { left: 66.5%; top: 0.4%; width: 7.5%; height: 4.8%; }
+  .fly         { left: 78.0%; top: 0.4%; width: 18.5%; height: 5.0%; }
+
+  /* Hero */
+  .explore     { left: 53.5%; top: 33.7%; width: 20.0%; height: 6.0%; }
+
+  /* What we are */
+  .learn       { left: 17.8%; top: 62.5%; width: 13.0%; height: 4.5%; }
+  .grow        { left: 50.0%; top: 62.4%; width: 10.0%; height: 4.8%; }
+  .create      { left: 64.2%; top: 62.4%; width: 10.5%; height: 4.8%; }
+  .connect     { left: 80.5%; top: 62.4%; width: 10.8%; height: 4.8%; }
+
+  /* Bottom CTA */
+  .bottom-cta  { left: 35.0%; top: 90.5%; width: 36.0%; height: 7.0%; }
+
+  /* Modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0,0,0,.76);
+    backdrop-filter: blur(7px);
+  }
+
+  .modal-backdrop.open { display: flex; }
+
+  .modal {
+    width: min(680px, 100%);
+    max-height: min(720px, 90vh);
+    overflow: auto;
+    padding: 34px 32px 30px;
+    background:
+      linear-gradient(rgba(20,9,24,.96), rgba(8,8,8,.98));
+    border: 1px solid rgba(232,189,69,.55);
+    box-shadow: 0 24px 80px rgba(0,0,0,.65);
+    color: #f6f0e7;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  .modal::before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    top: 14px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #6f139d, #e8bd45, #6f139d, transparent);
+  }
+
+  .close {
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: #e8bd45;
+    font-size: 28px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .close:focus-visible {
+    outline: 2px solid #e8bd45;
+  }
+
+  .modal h2 {
+    margin: 12px 45px 8px 0;
+    color: #e8bd45;
+    font-size: clamp(27px, 5vw, 40px);
+    line-height: 1.05;
+  }
+
+  .modal .eyebrow {
+    margin: 0 0 20px;
+    color: #b45ad9;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  .modal p { margin: 0 0 15px; }
+
+  .modal .script {
+    color: #c979ec;
+    font-style: italic;
+    font-size: 22px;
+  }
+
+  .modal ul {
+    padding-left: 22px;
+    margin: 12px 0 0;
+  }
+
+  .modal li { margin: 6px 0; }
+
+  .modal .action {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 11px 18px;
+    border: 1px solid #6f139d;
+    color: #fff;
+    background: #4e0b70;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 700px) {
+    .modal-backdrop { padding: 14px; }
+    .modal { padding: 30px 22px 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hotspot { transition: none; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="artwork" aria-label="The Weeping Butterfly Theater interactive landing page">
+    <img src="wbt-landing.PNG" alt="The Weeping Butterfly Theater landing page artwork">
+
+    <button class="hotspot home" data-panel="home" aria-label="Home"></button>
+    <button class="hotspot about" data-panel="about" aria-label="About"></button>
+    <button class="hotspot artists-nav" data-panel="artists" aria-label="For Artists"></button>
+    <button class="hotspot services" data-panel="services" aria-label="Services"></button>
+    <button class="hotspot opps" data-panel="opportunities" aria-label="Opportunities"></button>
+    <button class="hotspot contact" data-panel="contact" aria-label="Contact"></button>
+    <button class="hotspot fly" data-panel="fly" aria-label="Come Fly With Us"></button>
+
+    <button class="hotspot explore" data-panel="about" aria-label="Explore"></button>
+    <button class="hotspot learn" data-panel="about" aria-label="Learn More"></button>
+    <button class="hotspot grow" data-panel="artists" aria-label="Grow"></button>
+    <button class="hotspot create" data-panel="services" aria-label="Create"></button>
+    <button class="hotspot connect" data-panel="contact" aria-label="Connect"></button>
+    <button class="hotspot bottom-cta" data-panel="fly" aria-label="Get involved, submit, and stay connected"></button>
+  </div>
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop" role="presentation">
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="close" id="closeModal" type="button" aria-label="Close">&times;</button>
+    <div id="modalContent"></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  const root = document;
+  const backdrop = root.getElementById("modalBackdrop");
+  const content = root.getElementById("modalContent");
+  const close = root.getElementById("closeModal");
+  let lastFocused = null;
+
+  const panels = {
+    home: {
+      eyebrow: "The Weeping Butterfly Theater",
+      title: "Come back to the beginning.",
+      body: "<p>This is the home of the theater: a creative sanctuary for artists of all mediums.</p><p class='script'>The butterfly weeps, as she forgets the earth and learns the sky.</p>"
+    },
+    about: {
+      eyebrow: "What We Are",
+      title: "The Weeping Butterfly Theater",
+      body: "<p>We are a creative sanctuary for artists of all mediums — a space for transformation, collaboration, and real opportunity.</p><p>We believe in the power of art to heal, connect, and change the atmosphere.</p><p class='script'>All art. All people. All becoming.</p>"
+    },
+    artists: {
+      eyebrow: "For Artists",
+      title: "Grow.",
+      body: "<p>Artist-centered support for the person behind the art.</p><ul><li>Coaching & development</li><li>Community</li><li>Resources</li></ul><p>Future site content can turn this into an artist application, coaching page, or resource hub.</p>"
+    },
+    services: {
+      eyebrow: "For Creators",
+      title: "Create.",
+      body: "<p>Support for the people bringing ideas from imagination into production.</p><ul><li>Directing</li><li>Production</li><li>Collaboration</li><li>Media</li></ul>"
+    },
+    opportunities: {
+      eyebrow: "Opportunities",
+      title: "There is room to become.",
+      body: "<p>This space can house current opportunities, open calls, projects, productions, partnerships, and ways for artists to get involved.</p><p>As opportunities are added, this panel can become a live opportunities page.</p>"
+    },
+    contact: {
+      eyebrow: "For Collaborators",
+      title: "Connect.",
+      body: "<p>Partnerships. Networking. Creative opportunities.</p><p>The theater is built around relationships between artists, creators, companies, and people who believe in what art can become.</p>"
+    },
+    fly: {
+      eyebrow: "Come Fly With Us",
+      title: "Your imagination is your only limitation.",
+      body: "<p>Get involved. Submit. Stay connected.</p><p>This is the doorway for future forms, submissions, newsletters, social links, and collaboration requests.</p><p class='script'>Art isn't just what you see... it's what you feel, what you carry, what you become.</p>"
+    }
+  };
+
+  function openPanel(key) {
+    const panel = panels[key] || panels.home;
+    content.innerHTML =
+      "<p class='eyebrow'>" + panel.eyebrow + "</p>" +
+      "<h2 id='modalTitle'>" + panel.title + "</h2>" +
+      panel.body;
+    backdrop.classList.add("open");
+    backdrop.setAttribute("aria-hidden", "false");
+    lastFocused = root.activeElement;
+    close.focus();
+  }
+
+  function closePanel() {
+    backdrop.classList.remove("open");
+    backdrop.setAttribute("aria-hidden", "true");
+    content.innerHTML = "";
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  }
+
+  root.querySelectorAll(".hotspot").forEach(function (button) {
+    button.addEventListener("click", function () {
+      openPanel(button.dataset.panel);
+    });
+  });
+
+  close.addEventListener("click", closePanel);
+
+  backdrop.addEventListener("click", function (event) {
+    if (event.target === backdrop) closePanel();
+  });
+
+  root.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && backdrop.classList.contains("open")) {
+      closePanel();
+    }
+  });
+})();
+</script>
+</body>
+</html>
